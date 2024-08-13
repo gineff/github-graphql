@@ -4,7 +4,7 @@ import { gql } from 'graphql-request';
 import { RepositoriesResponse, RepositoriesQueryArgs } from './types';
 
 /** RTK Query Api */
-const githubToken = import.meta.env.VITE_GITHUB_KEY;
+const githubToken = import.meta.env.VITE_GITHUB_TOKEN;
 
 export const api = createApi({
   reducerPath: 'githubApi',
