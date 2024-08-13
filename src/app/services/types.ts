@@ -1,4 +1,5 @@
-type Repository = {
+export type Repository = {
+  id: string;
   name: string;
   primaryLanguage: {
     name: string;
@@ -8,22 +9,38 @@ type Repository = {
   updatedAt: string;
 };
 
-type PageInfo = {
-  endCursor: string;
+type Cursor = string;
+
+export type PageInfo = {
+  startCursor: Cursor;
+  endCursor: Cursor;
   hasNextPage: boolean;
+  hasPreviousPage: boolean;
 };
 
 export type RepositoriesResponse = {
-  repositoryCount: number;
-  edges: {
-    node: Repository;
-  }[];
-  pageInfo: PageInfo;
+  search: {
+    repositoryCount: number;
+    edges: {
+      node: Repository;
+    }[];
+    pageInfo: PageInfo;
+  };
 };
 
-export 
-type RepositoriesQueryArgs = {
+
+
+export type RepositoriesQueryArgs = {
   query: string;
   limit: number;
-  after?: string | null;
+  after: Cursor;
+  before: Cursor;
+};
+
+export type AppState = {
+  query: string;
+  repositoriesPerPage: number;
+  totalRepositories: number;
+  pageInfo: Partial<PageInfo>;
+  pageCursor: null;
 };

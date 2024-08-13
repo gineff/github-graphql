@@ -18,23 +18,27 @@ export const api = createApi({
   endpoints: (builder) => ({
     getRepositories: builder.query<RepositoriesResponse, RepositoriesQueryArgs>(
       {
-        query: ({ query, limit, after = null }) => ({
+        query: ({ query, limit, after, before }) => ({
           document: gql`
             query SearchRepositories(
               $query: String!
               $limit: Int!
+              $before: String
               $after: String
             ) {
               search(
                 query: $query
                 type: REPOSITORY
-                first: $limit
+                ${before ? 'last' : 'first'}: $limit
                 after: $after
+                before: $before
               ) {
                 repositoryCount
+
                 edges {
                   node {
                     ... on Repository {
+                      id
                       name
                       primaryLanguage {
                         name
@@ -45,9 +49,12 @@ export const api = createApi({
                     }
                   }
                 }
+
                 pageInfo {
+                  startCursor
                   endCursor
                   hasNextPage
+                  hasPreviousPage
                 }
               }
             }
@@ -56,6 +63,7 @@ export const api = createApi({
             query,
             limit,
             after,
+            before,
           },
         }),
       }
