@@ -1,11 +1,12 @@
 import { withProviders } from './providers';
+import { Router } from './router/router';
 
 /**
- *  App обернутся HOC.
+ *  App обернутся HOC withProviders.
  * */
 
 function App() {
-  return <p>hi</p>
+  return <Router />;
 }
 
 export default withProviders(App);
