@@ -17,7 +17,7 @@ export const Pagination: FC<PaginationProps> = ({
   /** текущая страница */
   const page = Number(searchParams.get('p')) || 1;
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (_: unknown, newPage: number) => {
     navigate({ search: getPageLink(newPage + 1) });
   };
 

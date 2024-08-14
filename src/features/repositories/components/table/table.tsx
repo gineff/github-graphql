@@ -51,7 +51,7 @@ export const RepositoriesTable: FC<RepositoriesTableProps> = ({
     setOrderBy(property);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, id: string) => {
+  const handleClick = (_: React.MouseEvent<unknown>, id: string) => {
     dispatch(selectRepository(id))
   };
 
