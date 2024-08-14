@@ -16,12 +16,11 @@ export const theme: Theme = createTheme({
       fontWeight: 400,
       lineHeight: 1.17,
       padding: '24px 32px',
-      color: 'rgb(0, 0, 0, 0.87)',
     },
   },
   palette: {
     text: {
-      primary: '#828282',
+      primary: 'rgb(0, 0, 0, 0.87)',
     },
     background: {
       paper: '#FFF',
@@ -61,6 +60,30 @@ export const theme: Theme = createTheme({
           letterSpacing: '0.46px',
           backgroundColor: '#2196f3',
         },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          borderBottom: '1px solid rgb(0,0,0, 0.12)',
+        },
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          width: 'calc(100% / 5)',
+          wordBreak: 'break-all',
+        },
+        head: {
+          textAlign: 'left',
+        },
+        body: {},
+      },
+    },
+    MuiTableSortLabel: {
+      styleOverrides: {
+        root: {},
       },
     },
   },

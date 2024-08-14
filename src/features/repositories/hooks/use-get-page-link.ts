@@ -7,6 +7,7 @@ export const useGetPageLink = (pageInfo?: PageInfo) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [stack, setStack] = useState<{ [key: string]: string }>({});
   const query = searchParams.get('q') ?? '';
+  const sort = searchParams.get('s') ?? '';
   const currentPage = Number(searchParams.get('p')) || 1;
   const cursor = searchParams.get('c') ?? '';
   const limit = Number(searchParams.get(''));
@@ -21,7 +22,7 @@ export const useGetPageLink = (pageInfo?: PageInfo) => {
       setSearchParams(searchParams);
     }
     setStack({});
-  }, [query, limit]);
+  }, [query, limit, sort]);
 
   const getPageLink = (page: number) => {
     const newSearchParams = new URLSearchParams(searchParams);

@@ -16,13 +16,14 @@ export const Repositories = () => {
    */
   const [searchParams] = useSearchParams();
   const query = searchParams.get('q') ?? ''; //строка запроса
+  const sort = searchParams.get('s') ?? ''; //строка запроса
   const cursor = searchParams.get('c') ?? ''; //курсор для получения текущей страницы
   const limit = Number(searchParams.get('l')) || defaultPerPage; //строк на страницу
   const [after, before] = parseCursor(cursor); //деструктуризация курсора
 
   /** запрос к graphql api */
   const { data, error, isFetching } = useGetRepositoriesQuery(
-    { query: `${query} sort:stars-desc`, after, before, limit },
+    { query: `${query}${sort && ` sort:${sort}`}`, after, before, limit },
     { skip: !query } // Пропустить запрос, если нет строки запроса
   );
   const pageInfo = data?.search.pageInfo;
@@ -38,8 +39,8 @@ export const Repositories = () => {
 
   return (
     <Stack direction="row" height="100%">
-      <Stack direction="column" spacing={2} height="100%">
-        <Box sx={{ flex: 1 }}>
+      <Stack direction="column" spacing={2} height="100%" width="100%">
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Typography component={'h3'} variant="h1">
             Результаты поиска
           </Typography>
