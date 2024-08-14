@@ -28,8 +28,6 @@ export type RepositoriesResponse = {
   };
 };
 
-
-
 export type RepositoriesQueryArgs = {
   query: string;
   limit: number;
@@ -37,10 +35,35 @@ export type RepositoriesQueryArgs = {
   before: Cursor;
 };
 
+type RepositoryTopicsResponse = {
+  edges: {
+    node: {
+      topic: {
+        name: string;
+      };
+    };
+  }[];
+};
+
+export type GetRepositoryResponse = {
+  node: {
+    name: string;
+    description: string;
+    stargazerCount: number;
+    licenseInfo: {
+      name: string;
+    };
+    primaryLanguage: {
+      name: string;
+    };
+    repositoryTopics: RepositoryTopicsResponse;
+  };
+};
+
+export type GetRepositoryArgs = {
+  id: string | null;
+};
+
 export type AppState = {
-  query: string;
-  repositoriesPerPage: number;
-  totalRepositories: number;
-  pageInfo: Partial<PageInfo>;
-  pageCursor: null;
+  repositoryId: string | null;
 };

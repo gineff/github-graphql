@@ -1,7 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { graphqlRequestBaseQuery } from '@rtk-query/graphql-request-base-query';
 import { gql } from 'graphql-request';
-import { RepositoriesResponse, RepositoriesQueryArgs } from './types';
+import {
+  RepositoriesResponse,
+  RepositoriesQueryArgs,
+  GetRepositoryResponse,
+  GetRepositoryArgs,
+} from './types';
 
 /** RTK Query Api */
 const githubToken = import.meta.env.VITE_GITHUB_TOKEN;
@@ -68,7 +73,40 @@ export const api = createApi({
         }),
       }
     ),
+    getRepositoryById: builder.query<GetRepositoryResponse, GetRepositoryArgs>({
+      query: ({ id }) => ({
+        document: gql`
+          query GetRepositoryById($id: ID!) {
+            node(id: $id) {
+              ... on Repository {
+                name
+                description
+                primaryLanguage {
+                  name
+                }
+                stargazerCount
+                licenseInfo {
+                  name
+                }
+                repositoryTopics(first: 5) {
+                  edges {
+                    node {
+                      topic {
+                        name
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `,
+        variables: {
+          id,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetRepositoriesQuery } = api;
+export const { useGetRepositoriesQuery, useGetRepositoryByIdQuery } = api;
