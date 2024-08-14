@@ -1,13 +1,14 @@
 import { useSearchParams } from 'react-router-dom';
 import { Pagination } from './components/pagination';
-import { RepositoriesList } from './components/repositories-list';
-import { RepositoryDetail } from './components/repository-detail';
+import { RepositoriesTable } from './components/table';
+import { RepositoryDetail } from './components/detail';
 import { useGetRepositoriesQuery } from '@/app/services/baseApi';
 import { defaultPerPage } from './constants';
 import { SerializedError } from '@reduxjs/toolkit';
-import { Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { Loader } from '@/shared/loader';
 import { parseCursor } from './utils/cursor';
+import { Welcome } from './components/welcome';
 
 export const Repositories = () => {
   /** параметры запроса хранятся в search params, для сохранения
@@ -20,7 +21,7 @@ export const Repositories = () => {
   const [after, before] = parseCursor(cursor); //деструктуризация курсора
 
   /** запрос к graphql api */
-  const { data, error, isLoading, isFetching } = useGetRepositoriesQuery(
+  const { data, error, isFetching } = useGetRepositoriesQuery(
     { query: `${query} sort:stars-desc`, after, before, limit },
     { skip: !query } // Пропустить запрос, если нет строки запроса
   );
@@ -31,14 +32,29 @@ export const Repositories = () => {
 
   const repositories = data?.search.edges ?? [];
 
+  if (!query) {
+    return <Welcome />;
+  }
+
   return (
-    <>
-      {/**  показ загрузчика во время загрузки компонента и запроса к апи */}
-      {(isLoading || isFetching) && <Loader />}
-      {error && <Typography>{errorMessage}</Typography>}
-      <RepositoriesList repositories={repositories} />
+    <Stack direction="row" height="100%">
+      <Stack direction="column" spacing={2} height="100%">
+        <Box sx={{ flex: 1 }}>
+          <Typography component={'h3'} variant="h1">
+            Результаты поиска
+          </Typography>
+          {isFetching ? (
+            <Loader />
+          ) : error ? (
+            <Typography>{errorMessage}</Typography>
+          ) : (
+            <RepositoriesTable repositories={repositories} />
+          )}
+        </Box>
+
+        <Pagination total={total} perPage={limit} pageInfo={pageInfo} />
+      </Stack>
       <RepositoryDetail />
-      <Pagination total={total} perPage={limit} pageInfo={pageInfo} />
-    </>
+    </Stack>
   );
 };

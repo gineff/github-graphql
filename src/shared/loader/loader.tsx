@@ -1,4 +1,4 @@
-import {Box, CircularProgress} from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 
 export const Loader = () => {
   return (
@@ -7,7 +7,7 @@ export const Loader = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh',
+        height: '100%',
       }}
     >
       <CircularProgress />
