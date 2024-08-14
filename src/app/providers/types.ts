@@ -1,4 +1,4 @@
 import type { ReactElement } from 'react';
 
-export type ProviderReturnType = () => JSX.Element;
-export type ProviderComponent = () => ReactElement;
+export type ProviderReturnType = () => JSX.Element; // Тип для функции, возвращающей JSX-элемент.
+export type ProviderComponent = () => ReactElement; // Тип для компонента, возвращающего ReactElement.

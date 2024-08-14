@@ -1,5 +1,8 @@
 import { ProviderComponent, ProviderReturnType } from './types';
 
+/** функция compose для создания HOC компонента
+ *  последовательно оборачивает компонент в провайдеры */
+
 const compose = (
   ...funcs: ((Component: ProviderComponent) => ProviderReturnType)[]
 ) => {
