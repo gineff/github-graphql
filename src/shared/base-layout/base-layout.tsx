@@ -5,12 +5,12 @@ import { Footer } from '../footer';
 
 export const BaseLayout = () => {
   return (
-    <>
+    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header />
-      <Box sx={{ flexGrow: 1, width: '100%' }} component="main">
+      <Box sx={{ width: '100%', flex: 1 }} component="main">
         <Outlet />
       </Box>
       <Footer />
-    </>
+    </Box>
   );
 };

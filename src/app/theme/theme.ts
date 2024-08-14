@@ -1,28 +1,30 @@
 import { createTheme, Theme } from '@mui/material/styles';
 
-export const majesticPurple = '#6B32E7';
-export const vividBurgundy = '#84103B';
-export const deepIndigo = '#3C1C81';
-export const headerHeightLg = '113px';
-export const headerHeightXs = '64px';
-const backgroundColor = '#010101';
-
-const mixinFont16 = {
-  fontWeight: 400,
-  fontSize: '16px',
-  lineHeight: '19.36px',
-};
-
 export const theme: Theme = createTheme({
+  mixins: {
+    centred: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  },
   typography: {
     fontFamily: 'Roboto, Arial, sans-serif',
+    h1: {
+      fontSize: '3rem',
+      fontWeight: 400,
+      lineHeight: 1.17,
+      padding: '24px 32px',
+      color: 'rgb(0, 0, 0, 0.87)',
+    },
   },
   palette: {
     text: {
       primary: '#828282',
     },
     background: {
-      paper: '#100E17',
+      paper: '#FFF',
       default: '#FFF',
     },
   },

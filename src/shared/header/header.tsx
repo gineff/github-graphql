@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Input, Button, Box, AppBar, Toolbar } from '@mui/material';
-import style from './header.module.scss';
+import { Input, Button, AppBar, Toolbar } from '@mui/material';
+import styles from './header.module.scss';
 
 export const Header = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -22,13 +22,13 @@ export const Header = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
         sx={{
           width: '100%',
           height: '80px',
           backgroundColor: '#00838F',
+          boxShadow: 'none' 
         }}
       >
         <Toolbar
@@ -43,7 +43,7 @@ export const Header = () => {
           }}
         >
           <Input
-            className={style.input}
+            className={styles.input}
             inputRef={inputRef}
             placeholder="Введите поисковый запрос"
           />
@@ -51,12 +51,11 @@ export const Header = () => {
             variant="contained"
             color="primary"
             onClick={handleSearch}
-            className={style.button}
+            className={styles.button}
           >
             Искать
           </Button>
         </Toolbar>
       </AppBar>
-    </Box>
   );
 };
