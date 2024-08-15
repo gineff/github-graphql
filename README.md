@@ -70,6 +70,10 @@ npm start
 
 Вы можете посмотреть демо-версию приложения, развернутую на платформе Vercel, по следующей ссылке: [Demo на Vercel](https://graphql-test-task-eguz.vercel.app).
 
+## Figma
+
+Ссылка на шаблон Figma: [Шаблон](https://www.figma.com/design/xAqDR1AHbRdwYOVz2B7baP).
+
 ## Контакты
 
 Если у вас есть вопросы по проекту, вы можете связаться со мной через telegram: [https://t.me/gineff].
