@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { createCursor } from '../utils/cursor';
 
+/** хук для получения, кеширования ссылки на предыдущую и 
+ * следующую страницу в компоненте пагинации */
+
 export const useGetPageLink = (pageInfo?: PageInfo) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [stack, setStack] = useState<{ [key: string]: string }>({});

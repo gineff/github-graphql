@@ -1,5 +1,5 @@
 
-
+//Схема репозитория в ответ на запрос к апи 
 export type Repository = {
   id: string;
   name: string;
@@ -11,8 +11,9 @@ export type Repository = {
   updatedAt: string;
 };
 
-type Cursor = string;
+type Cursor = string; // Курсор для пагинации
 
+//Схема пагинации в ответ на запрос к апи 
 export type PageInfo = {
   startCursor: Cursor;
   endCursor: Cursor;
@@ -20,6 +21,7 @@ export type PageInfo = {
   hasPreviousPage: boolean;
 };
 
+// Ответ API для поиска репозиториев
 export type RepositoriesResponse = {
   search: {
     repositoryCount: number;
@@ -30,6 +32,7 @@ export type RepositoriesResponse = {
   };
 };
 
+//Аргументы для запроса поиска репозиториев
 export type RepositoriesQueryArgs = {
   query: string;
   limit: number;
@@ -37,6 +40,7 @@ export type RepositoriesQueryArgs = {
   before: Cursor;
 };
 
+//схема топиков
 type RepositoryTopicsResponse = {
   edges: {
     node: {
@@ -47,6 +51,7 @@ type RepositoryTopicsResponse = {
   }[];
 };
 
+//Ответ API для получения конкретного репозитория
 export type GetRepositoryResponse = {
   node: {
     name: string;
@@ -62,10 +67,12 @@ export type GetRepositoryResponse = {
   };
 };
 
+//Аргументы для запроса получения репозитория по ID
 export type GetRepositoryArgs = {
   id: string | null;
 };
 
+//Тип состояния приложения
 export type AppState = {
   repositoryId: string | null;
 };

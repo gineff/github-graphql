@@ -3,7 +3,6 @@ import { AppState } from './types';
 
 const initialState: AppState = {
   repositoryId: null,
-
 };
 
 export const appSlice = createSlice({
@@ -16,7 +15,6 @@ export const appSlice = createSlice({
   },
 });
 
-export const { selectRepository } =
-  appSlice.actions;
+export const { selectRepository } = appSlice.actions;
 
 export default appSlice.reducer;
